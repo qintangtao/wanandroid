@@ -30,7 +30,9 @@ class SystemPagerFragment : BaseStateFragment<SystemPagerViewModel, FragmentSyst
     override fun initView(savedInstanceState: Bundle?) {
         mBinding.viewModel = viewModel
 
-        category = arguments?.getParcelable(PARAM_CATEGORY)!!
+        arguments?.let {
+            category = it.getParcelable(PARAM_CATEGORY)!!
+        }
 
         mBinding.run {
             swipeRefreshLayout.run {
