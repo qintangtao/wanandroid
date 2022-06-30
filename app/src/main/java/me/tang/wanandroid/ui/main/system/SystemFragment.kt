@@ -5,11 +5,13 @@ import android.view.View
 import androidx.core.view.isEmpty
 import androidx.lifecycle.Observer
 import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import me.tang.wanandroid.ui.main.MainActivity
 import me.tang.wanandroid.ui.main.system.category.SystemCategoryFragment
 import me.tang.wanandroid.ui.main.system.pager.SystemPagerFragment
 import me.tang.mvvm.state.base.BaseStateFragment
 import me.tang.wanandroid.adapter.SimpleFragmentPagerAdapter
+import me.tang.wanandroid.adapter.SimpleFragmentStateAdapter
 import me.tang.wanandroid.databinding.FragmentSystemBinding
 
 class SystemFragment : BaseStateFragment<SystemViewModel, FragmentSystemBinding>() {
@@ -52,10 +54,15 @@ class SystemFragment : BaseStateFragment<SystemViewModel, FragmentSystemBinding>
                     fragments.add(SystemPagerFragment.newInstance(it))
                 }
 
-                viewPager.adapter = SimpleFragmentPagerAdapter(childFragmentManager, fragments, titles)
+                //viewPager.adapter = SimpleFragmentPagerAdapter(childFragmentManager, fragments, titles)
                 //太多了会造成卡顿，通过viewmodel的生命周期，在初始化加载数据的时候，不重新加载新的数据，直接使用旧数据
                 //viewPager.offscreenPageLimit = fragments.size
-                tabLayout.setupWithViewPager(viewPager)
+                //tabLayout.setupWithViewPager(viewPager)
+
+                viewPager.adapter = SimpleFragmentStateAdapter(requireActivity(), fragments)
+                TabLayoutMediator(tabLayout, viewPager, true, true) { tab, positon ->
+                    tab.text = titles[positon]
+                }.attach()
 
                 categoryFragment = SystemCategoryFragment.newInstance(ArrayList(it))
             })
