@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import me.tang.mvvm.adapter.SimpleFragmentStateAdapter
 import me.tang.wanandroid.ui.main.MainActivity
 import me.tang.wanandroid.ui.main.home.latest.LatestFragment
 import me.tang.wanandroid.ui.main.home.plaza.PlazaFragment
@@ -15,8 +16,6 @@ import me.tang.wanandroid.ui.main.home.wechat.WechatFragment
 import me.tang.mvvm.base.BaseFragment
 import me.tang.mvvm.base.NoViewModel
 import me.tang.wanandroid.R
-import me.tang.wanandroid.adapter.SimpleFragmentPagerAdapter
-import me.tang.wanandroid.adapter.SimpleFragmentStateAdapter
 import me.tang.wanandroid.databinding.FragmentHomeBinding
 import me.tang.wanandroid.ui.search.SearchActivity
 

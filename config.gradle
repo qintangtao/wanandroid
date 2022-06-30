@@ -3,7 +3,7 @@ ext {
     versions = [
             lifecycle           : "2.2.0-alpha01",
             room                : '2.3.0',
-            mvvm                : '1.0.3',
+            mvvm                : '1.0.4',
             bda                 : '1.0.2',
             bdca                : '1.0.5'
     ]

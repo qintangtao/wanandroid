@@ -6,12 +6,11 @@ import androidx.core.view.isEmpty
 import androidx.lifecycle.Observer
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import me.tang.mvvm.adapter.SimpleFragmentStateAdapter
 import me.tang.wanandroid.ui.main.MainActivity
 import me.tang.wanandroid.ui.main.system.category.SystemCategoryFragment
 import me.tang.wanandroid.ui.main.system.pager.SystemPagerFragment
 import me.tang.mvvm.state.base.BaseStateFragment
-import me.tang.wanandroid.adapter.SimpleFragmentPagerAdapter
-import me.tang.wanandroid.adapter.SimpleFragmentStateAdapter
 import me.tang.wanandroid.databinding.FragmentSystemBinding
 
 class SystemFragment : BaseStateFragment<SystemViewModel, FragmentSystemBinding>() {
