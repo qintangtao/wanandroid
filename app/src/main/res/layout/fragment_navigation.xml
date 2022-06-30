@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="me.tang.wanandroid.ui.main.navigation.NavigationViewModel" />
+    </data>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.main.navigation.NavigationFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/bgColorPrimary"
+        android:elevation="2dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="@string/navigation"
+        android:textSize="16sp" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <me.tang.mvvm.state.view.StateLayout
+            android:id="@+id/stateLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/bgColorSecondary"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:itemBinding="@{viewModel.itemBinding}"
+                    app:items="@{viewModel.items}" />
+
+                <TextView
+                    android:id="@+id/tvFloatTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bgColorPrimary"
+                    android:fontFamily="sans-serif-medium"
+                    android:paddingStart="16dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:textColor="@color/textColorSecondary"
+                    android:visibility="@{viewModel.items== null || viewModel.items.empty ? View.GONE : View.VISIBLE}"
+                    android:text="@{viewModel.items== null || viewModel.items.empty ? &quot;&quot; : viewModel.items.get(0).name}"
+                    tools:text="常用网站"
+                    tools:visibility="visible" />
+
+            </FrameLayout>
+
+        </me.tang.mvvm.state.view.StateLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</LinearLayout>
+</layout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="viewModel"
+            type="me.tang.wanandroid.ui.main.system.category.SystemCategoryViewModel" />
+        <variable
+            name="itemBean"
+            type="me.tang.wanandroid.model.bean.Category" />
+    </data>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:focusable="true">
+
+    <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="14sp"
+            app:html="@{itemBean.name}"
+            tools:text="移动开发" />
+
+    <com.zhy.view.flowlayout.TagFlowLayout
+            android:id="@+id/tagFlowLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:tag="@{itemBean.id}"
+            app:max_select="1"
+            app:itemBinding="@{viewModel.itemBindingTag}"
+            app:items="@{itemBean.children}"
+            app:selected="@{itemBean.id == viewModel.checked.first ?  viewModel.checked.second : -1}"
+            app:onTagClick="@{viewModel.onTagClickListener}"/>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_marginTop="8dp"
+            android:background="@color/bgColorSecondary"
+            android:layout_height="1dp" />
+</LinearLayout>
+</layout>

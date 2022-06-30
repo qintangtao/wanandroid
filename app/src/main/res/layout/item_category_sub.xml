@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="checkedCat"
+            type="me.tang.mvvm.event.Message" />
+        <variable
+            name="itemBean"
+            type="me.tang.wanandroid.model.bean.Category" />
+        <variable
+            name="listenner"
+            type="me.tang.mvvm.base.OnItemClickListener" />
+    </data>
+    <CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/selector_bg_category_item"
+            android:checked="false"
+            android:textColor="@color/selector_color_category_item"
+            android:textSize="13sp"
+            android:onClick="@{(view)->listenner.onClick(view, itemBean)}"
+            app:html="@{itemBean.name}"
+            app:state_checked="@{itemBean.id == checkedCat.code}"
+            tools:text="iOS"/>
+</layout>

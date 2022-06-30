@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="viewModel"
+            type="me.tang.wanandroid.ui.main.navigation.NavigationViewModel" />
+        <variable
+            name="itemBean"
+            type="me.tang.wanandroid.model.bean.Navigation" />
+    </data>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bgColorPrimary"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        android:elevation="1dp"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp"
+        android:paddingEnd="16dp">
+
+    <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textColorSecondary"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="14sp"
+            android:text="@{itemBean.name}"
+            tools:text="移动开发" />
+
+    <com.zhy.view.flowlayout.TagFlowLayout
+            android:id="@+id/tagFlawLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:tag="@{itemBean.cid}"
+            app:max_select="1"
+            app:itemBinding="@{viewModel.itemBindingTag}"
+            app:items="@{itemBean.articles}"
+            app:onTagClick="@{viewModel.onTagClickListener}"/>
+
+</LinearLayout>
+</layout>
