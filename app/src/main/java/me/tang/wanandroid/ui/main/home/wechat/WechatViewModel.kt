@@ -32,8 +32,18 @@ class WechatViewModel : BaseViewModel() {
         override fun onClick(view: View, item: Article) {
             when(view.id) {
                 R.id.iv_collect -> {
-                    item.collect = !item.collect
-                    _items.value = _items.value!!.toMutableList()
+                    //item.collect = !item.collect
+                    //_items.value = _items.value!!.toMutableList()
+
+                    //check(index > -1) { "not found $item from list" }
+                    //存在还没有把最新的item更新到binding view上去 此时点击的还是旧item 已在上次移除
+                    val index = _items.value!!.indexOf(item)
+                    if (index >= 0) {
+                        _items.value  = _items.value!!.toMutableList().apply {
+                            removeAt(index)
+                            add(index,  item.copy(collect = !item.collect))
+                        }
+                    }
                 }
                 else -> {
                     view.context.startActivity(Intent().apply {
@@ -60,6 +70,8 @@ class WechatViewModel : BaseViewModel() {
     val items: LiveData<MutableList<Article>> = _items
     val itemBinding = ItemBinding.of<Article>(BR.itemBean, R.layout.item_article)
         .bindExtra(BR.listenner, itemOnClickListener)
+
+    val diff = Article.diffCallback
 
     fun getWechatCategories() {
         launchSerialResult({

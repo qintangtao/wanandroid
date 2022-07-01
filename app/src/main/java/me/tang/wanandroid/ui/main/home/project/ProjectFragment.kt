@@ -2,8 +2,8 @@ package me.tang.wanandroid.ui.main.home.project
 
 import android.os.Bundle
 import com.blankj.utilcode.util.ToastUtils
-import com.jcodecraeer.xrecyclerview.ProgressStyle
-import com.jcodecraeer.xrecyclerview.XRecyclerView
+import me.tang.xrecyclerview.ProgressStyle
+import me.tang.xrecyclerview.XRecyclerView
 import me.tang.mvvm.network.RESULT
 import me.tang.mvvm.state.base.BaseStateFragment
 import me.tang.wanandroid.R
@@ -20,24 +20,22 @@ class ProjectFragment : BaseStateFragment<ProjectViewModel, FragmentProjectBindi
     override fun initView(savedInstanceState: Bundle?) {
         mBinding.viewModel = viewModel
 
-        mBinding.run {
-            swipeRefreshLayout.run {
-                setColorSchemeResources(R.color.textColorPrimary)
-                setProgressBackgroundColorSchemeResource(R.color.bgColorPrimary)
-                setOnRefreshListener { viewModel?.refreshProjectList() }
-            }
+        mBinding.swipeRefreshLayout.run {
+            setColorSchemeResources(R.color.textColorPrimary)
+            setProgressBackgroundColorSchemeResource(R.color.bgColorPrimary)
+            setOnRefreshListener { viewModel.refreshProjectList() }
+        }
 
-            recyclerView.run {
-                setPullRefreshEnabled(false)
-                setLoadingMoreEnabled(true)
-                setLoadingMoreProgressStyle(ProgressStyle.Pacman)
-                setLoadingListener(object : XRecyclerView.LoadingListener {
-                    override fun onRefresh() { }
-                    override fun onLoadMore() {
-                        viewModel?.loadMoreProjectList()
-                    }
-                })
-            }
+        mBinding.recyclerView.run {
+            setPullRefreshEnabled(false)
+            setLoadingMoreEnabled(true)
+            setLoadingMoreProgressStyle(ProgressStyle.Pacman)
+            setLoadingListener(object : XRecyclerView.LoadingListener {
+                override fun onRefresh() { }
+                override fun onLoadMore() {
+                    viewModel.loadMoreProjectList()
+                }
+            })
         }
     }
 

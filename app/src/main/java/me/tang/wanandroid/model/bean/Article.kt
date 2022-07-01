@@ -1,6 +1,7 @@
 package me.tang.wanandroid.model.bean
 
 import android.os.Parcelable
+import androidx.recyclerview.widget.DiffUtil
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
@@ -44,4 +45,23 @@ data class Article(
     var visible: Int = 0,
     var zan: Int = 0,
     var top: Boolean = false
-) : Parcelable
+) : Parcelable {
+
+    companion object {
+
+        val diffCallback = object : DiffUtil.ItemCallback<Article>() {
+            override fun areItemsTheSame(
+                oldItem: Article,
+                newItem: Article
+            ): Boolean =
+                oldItem.id == newItem.id
+
+            override fun areContentsTheSame(
+                oldItem: Article,
+                newItem: Article
+            ): Boolean =
+                oldItem.collect == newItem.collect
+        }
+    }
+
+}

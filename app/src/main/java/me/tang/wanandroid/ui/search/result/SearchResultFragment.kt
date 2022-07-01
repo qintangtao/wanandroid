@@ -2,8 +2,8 @@ package me.tang.wanandroid.ui.search.result
 
 import android.os.Bundle
 import com.blankj.utilcode.util.ToastUtils
-import com.jcodecraeer.xrecyclerview.ProgressStyle
-import com.jcodecraeer.xrecyclerview.XRecyclerView
+import me.tang.xrecyclerview.ProgressStyle
+import me.tang.xrecyclerview.XRecyclerView
 import me.tang.mvvm.network.RESULT
 import me.tang.mvvm.state.base.BaseStateFragment
 import me.tang.wanandroid.R

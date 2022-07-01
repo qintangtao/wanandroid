@@ -3,8 +3,8 @@ package me.tang.wanandroid.ui.main.home.popular
 import android.content.Intent
 import android.os.Bundle
 import com.blankj.utilcode.util.ToastUtils
-import com.jcodecraeer.xrecyclerview.ProgressStyle
-import com.jcodecraeer.xrecyclerview.XRecyclerView.LoadingListener
+import me.tang.xrecyclerview.ProgressStyle
+import me.tang.xrecyclerview.XRecyclerView.LoadingListener
 import me.tang.mvvm.event.Message
 import me.tang.mvvm.network.RESULT
 import me.tang.mvvm.state.base.BaseStateFragment
@@ -25,27 +25,25 @@ class PopularFragment : BaseStateFragment<PopularViewModel, FragmentPopularBindi
     override fun initView(savedInstanceState: Bundle?) {
         mBinding.viewModel = viewModel
 
-        mBinding.run {
-            swipeRefreshLayout.run {
-                setColorSchemeResources(R.color.textColorPrimary)
-                setProgressBackgroundColorSchemeResource(R.color.bgColorPrimary)
-                setOnRefreshListener { viewModel?.refreshArticleList() }
-            }
 
-            recyclerView.run {
-                setPullRefreshEnabled(false)
-                setLoadingMoreEnabled(true)
-                setLoadingMoreProgressStyle(ProgressStyle.Pacman)
-                setLoadingListener(object : LoadingListener {
-                    override fun onRefresh() {
-                    }
-                    override fun onLoadMore() {
-                        viewModel?.loadMoreArticleList()
-                    }
-                })
-            }
+        mBinding.swipeRefreshLayout.run {
+            setColorSchemeResources(R.color.textColorPrimary)
+            setProgressBackgroundColorSchemeResource(R.color.bgColorPrimary)
+            setOnRefreshListener { viewModel.refreshArticleList() }
         }
 
+        mBinding.recyclerView.run {
+            setPullRefreshEnabled(false)
+            setLoadingMoreEnabled(true)
+            setLoadingMoreProgressStyle(ProgressStyle.Pacman)
+            setLoadingListener(object : LoadingListener {
+                override fun onRefresh() {
+                }
+                override fun onLoadMore() {
+                    viewModel.loadMoreArticleList()
+                }
+            })
+        }
     }
 
     override fun lazyLoadData() {

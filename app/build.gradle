@@ -52,7 +52,12 @@ dependencies {
     api rootProject.agentweb.agentweb
     api rootProject.ext.dependencies.flowlayout
     api rootProject.ext.dependencies.banner
-    api rootProject.ext.dependencies.xrecyclerview
+
+    //xrecyclerview
+    //api rootProject.ext.dependencies.xrecyclerview 弃用（不支持diff）
+
+    // 支持androidx
+    implementation 'com.github.qintangtao:xrecyclerview:1.0.2'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

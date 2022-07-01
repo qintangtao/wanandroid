@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <com.jcodecraeer.xrecyclerview.XRecyclerView
+                <me.tang.xrecyclerview.XRecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -44,6 +44,7 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:itemBinding="@{viewModel.itemBinding}"
                     app:items="@{viewModel.items}"
+                    app:diffConfig="@{viewModel.diff}"
                     tools:listitem="@layout/item_article_simple"/>
 
             </me.tang.mvvm.state.view.StateLayout>
